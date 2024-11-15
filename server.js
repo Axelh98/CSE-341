@@ -6,7 +6,7 @@ const mongodb = require("./data/database");
 
 app.use(express.json());
 
-app.use("/api", router);
+app.use("/", router); // Use the router
 
 
 app.set("view engine", "ejs");
