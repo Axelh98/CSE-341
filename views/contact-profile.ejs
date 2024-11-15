@@ -7,13 +7,13 @@
     <p><strong>Birthday:</strong> <%= contact.birthday %></p>
     <div class="button-container">
         <!-- Botón para volver al listado de contactos -->
-        <a href="/contacts" class="btn-back">Back to Contact List</a>
+        <a href="/contacts" class="btn-back">Contact List</a>
 
         <!-- Botón para editar el contacto -->
         <a href="/contacts/edit/<%= contact._id %>" class="btn-edit">Edit</a>
 
         <!-- Botón para eliminar el contacto -->
-        <form action="/contacts/<%= contact._id %>" method="POST" style="display: inline;">
+        <form action="/contacts/<%= contact._id %>?_method=DELETE" method="POST" style="display: inline">
             <button type="submit" class="btn-delete" onclick="return confirm('Are you sure you want to delete this contact?');">Delete</button>
         </form>
     </div>

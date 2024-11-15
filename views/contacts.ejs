@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contact List</title>
     <!-- 
     <style>
@@ -27,82 +27,99 @@
             margin: 5px 0;
         }
     </style>-->
-
-
-</head>
-<body>
-
-
+  </head>
+  <body>
     <h1>Contact List</h1>
+
+    <!-- Button to create a new contact -->
+    <a href="/contacts/create" class="btn-create">Create New Contact</a>
+
     <div class="card-container">
-        <% contacts.forEach(contact => { %>
-            <div class="card">
-                <h3><%= contact.firstName %> <%= contact.lastName %></h3>
-                <div class="button-container">
-                    <!-- Botón para ver el perfil -->
-                    <a href="/contacts/<%= contact._id %>" class="btn-profile">Profile</a>
-                    
-                    <!-- Botón para editar el contacto -->
-                    <a href="/contacts/edit/<%= contact._id %>" class="btn-edit">Edit</a>
-                    
-                    <!-- Botón para eliminar el contacto -->
-                    <form action="/contacts/<%= contact._id %>" method="POST" style="display: inline;">
-                        <button type="submit" class="btn-delete" onclick="return confirm('Are you sure you want to delete this contact?');">Delete</button>
-                    </form>
-                </div>
-            </div>
-        <% }); %>
+      <% contacts.forEach(contact => { %>
+      <div class="card">
+        <h3><%= contact.firstName %> <%= contact.lastName %></h3>
+        <div class="button-container">
+          <!-- Button to view the profile -->
+          <a href="/contacts/<%= contact._id %>" class="btn-profile">Profile</a>
+
+          <!-- Button to edit the contact -->
+          <a href="/contacts/edit/<%= contact._id %>" class="btn-edit">Edit</a>
+
+          <!-- Button to delete the contact -->
+          <form action="/contacts/<%= contact._id %>?_method=DELETE" method="POST" style="display: inline">
+            <button
+              type="submit"
+              class="btn-delete"
+              onclick="return confirm('Are you sure you want to delete this contact?');"
+            >
+              Delete
+            </button>
+          </form>
+        </div>
+      </div>
+      <% }); %>
     </div>
-    
+
     <!-- Estilos CSS para las tarjetas y botones -->
     <style>
-        .card-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-        }
-        .card {
-            border: 1px solid #ccc;
-            padding: 20px;
-            border-radius: 8px;
-            width: 200px;
-            text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            background-color: #fff;
-        }
-        .card h3 {
-            font-size: 1.5em;
-            margin-bottom: 10px;
-        }
-        .button-container {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 15px;
-        }
-        .btn-profile, .btn-edit, .btn-delete {
-            text-decoration: none;
-            padding: 8px 12px;
-            border-radius: 5px;
-            font-size: 1em;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        .btn-edit {
-            background-color: #ffa500;
-        }
-        .btn-delete {
-            background-color: #f44336;
-        }
-        .btn-profile:hover, .btn-edit:hover, .btn-delete:hover {
-            opacity: 0.8;
-        }
+      .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+      }
+      .card {
+        border: 1px solid #ccc;
+        padding: 20px;
+        border-radius: 8px;
+        width: 200px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+      }
+      .card h3 {
+        font-size: 1.5em;
+        margin-bottom: 10px;
+      }
+      .button-container {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 15px;
+      }
+      .btn-profile,
+      .btn-edit,
+      .btn-delete,
+      .btn-create {
+        text-decoration: none;
+        padding: 8px 12px;
+        border-radius: 5px;
+        font-size: 1em;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      .btn-edit {
+        background-color: #ffa500;
+      }
+      .btn-delete {
+        background-color: #f44336;
+      }
+      .btn-create {
+        display: block;
+        margin: 20px auto;
+        background-color: #2196f3;
+        font-size: 1.2em;
+        padding: 10px 20px;
+        text-align: center;
+        width: 200px;
+      }
+      .btn-profile:hover,
+      .btn-edit:hover,
+      .btn-delete:hover,
+      .btn-create:hover {
+        opacity: 0.8;
+      }
     </style>
-    
-
-
-
-</body>
+  </body>
 </html>

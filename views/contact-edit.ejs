@@ -1,6 +1,7 @@
 <!-- contact-edit.ejs -->
 <h1>Edit Contact</h1>
-<form action="/contacts/<%= contact._id %>" method="POST">
+<form action="/contacts/edit/<%= contact._id %>?_method=PUT" method="POST">
+    <input type="hidden" name="_method" value="PUT">
     <div class="form-group">
         <label for="firstName">First Name</label>
         <input type="text" name="firstName" id="firstName" value="<%= contact.firstName %>" required />

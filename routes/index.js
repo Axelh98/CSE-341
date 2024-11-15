@@ -7,4 +7,6 @@ router.get('/', (req, res) => {
 
 router.use("/contacts", require("./contacts"));
 
+router.use("/swagger", require("./swagger"));
+
 module.exports = router;
