@@ -2,12 +2,13 @@
 const express = require('express');
 const router = express.Router();
 const contactsController = require('../controllers/users.js');
+const { validateContact } = require('../middleware/validation.js');
 
 // Obtain all contacts
 router.get('/', contactsController.getAllUsers);
 
 // Show a create contact form
-router.get('/create', contactsController.createContact);
+router.get('/create', validateContact, contactsController.createContact);
 
 // Show an edit contact form
 router.get("/edit/:id", contactsController.showEditForm);

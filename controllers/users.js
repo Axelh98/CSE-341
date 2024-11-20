@@ -25,18 +25,28 @@ const getUserById = async (req, res) => {
 };
 
 // Crear un nuevo contacto
-const createUser = async (req, res) => {    
-    //swagger.tag("Contacts");
-    const newContact = {
+const createUser = async (req, res, next) => {
+    try {
+      const newContact = {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         email: req.body.email,
         favoriteColor: req.body.favoriteColor,
-        birthday: req.body.birthday
-    };
-    await mongodb.getDatabase().collection("contact").insertOne(newContact);
-    res.redirect("/contacts");
-};
+        birthday: req.body.birthday,
+      };
+  
+      const result = await mongodb.getDatabase().collection("contacts").insertOne(newContact);
+  
+      if (!result.acknowledged) {
+        throw new Error("Failed to create contact");
+      }
+  
+      res.redirect("/contacts");
+    } catch (err) {
+      next(err); // Pasa el error al middleware de manejo de errores
+    }
+  };
+  
 
 // Show a create contact form
 const createContact = async (req, res) => {

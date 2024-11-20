@@ -7,9 +7,7 @@ const bodyParser = require("body-parser");
 const methodOverride = require('method-override');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
-
-
-
+const errorHandler = require("./middleware/errorHandler");
 
 
 app.use(bodyParser.json());
@@ -26,6 +24,8 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   next();
 })
+
+app.use(errorHandler);
 
 
 mongodb.initDb((err) => {
